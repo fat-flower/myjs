@@ -1,4 +1,5 @@
 //js的对象类似于Python的字典
+//对象属性名称必须是字符串，有效变量可以不加''
 var xiaoming = {
 	name: 'xiaoming',
 	age: 18,
