@@ -28,3 +28,56 @@ var xiaoming = {
 };
 var {name,age} =  xiaoming;
 console.log(name+','+age);
+
+//如果要使用的变量名和属性名不一致，可以用let
+var xiaoming = {
+	name: 'xiaoming',
+	age: 18
+};
+//把age属性赋值给变量his_age
+//注意: passport不是变量，而是为了让变量id获得passport属性
+let {name, age:his_age} = xiaoming;
+his_age;//18
+age;//Uncaught ReferenceError: passport is not defined
+
+//多个层次则要保证层级相同
+var xiaoming = {
+	name: 'xiaoming',
+	age: 18,
+	address: {
+		city: 'chengdu',
+		street: 'd5'
+	}
+};
+var {name,age,address:{city,street}} = xiaoming;
+
+//解构使用默认值
+var xiaoming = {
+	name: 'xiaoming',
+	age: 18
+};
+//如果对象没有sex属性，则sex默认为'男'
+var {name,age,sex='男'} = xiaoming;
+
+//如果变量已经被声明，则要加()
+//这时因为JavaScript引擎把{开头的语句当作了块处理，于是=不再合法。
+//解决方法是用小括号括起来
+var xiaoming = {
+	name: 'xiaoming',
+	age: 18
+};
+//声明name，age
+var name, age;
+({name, age} = xiaoming);
+
+//使用场景，两个数交换
+var x=1,y=2;
+[x,y] = [y,x];
+//x=2, y=1
+
+
+
+
+
+
+
