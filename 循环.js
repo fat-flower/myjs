@@ -45,4 +45,14 @@ while (i < arr.length)
 //Hello,Lisa!
 //Hello,Adam!
 
+/****************************************************************/
+
+//let关键字
+//let关键字定义的变量只在for{}的块级作用域中有效
+for(let i=0; i < 5; i++)
+{
+	console.log(i);//0,1,2,3,4
+}
+console.log(i);//i无效
+
 
