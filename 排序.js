@@ -42,6 +42,7 @@ function foo(x, y){
 	//统一转化为大写再做比较
 	m = x.toUpperCase();
     n = y.toUpperCase();
+	//toLowerCase()转化为小写
 	if(m > n){
 		return 1;
 	}

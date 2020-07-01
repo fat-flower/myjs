@@ -131,5 +131,40 @@ var str = arr.join('-');
 str;
 //"a-1-b"
 
+/*********************************************/
+
+//every()
+//判断数组的所有元素是否满足测试条件
+var arr = ['Apple', 'pear', 'orange'];
+function foo(x){
+	return x.length > 0;
+};
+//判断数组中每个元素的长度是否都大于0
+arr.every(foo);//true
+
+/*********************************************/
+
+//find()
+//find()方法用于查找符合条件的第一个元素，如果找到，返回这个元素，否则，返回undefined
+var arr = ['Apple', 'pear', 'orange'];
+function foo(x){
+	//元素值是否为全小写
+	return x === x.toLowerCase();
+};
+//找第一个全小写的元素值
+var ret = arr.find(foo);
+ret;//"pear"
+
+//findIndex和find相似，不过返回的索引值，没有找到返回-1
+
+/************************************************/
+
+//forEach
+//把每个元素依次作用于传入的函数，但不会返回新的数组。
+//forEach()常用于遍历数组，因此，传入的函数不需要返回值
+var arr = ['Apple', 'pear', 'orange'];
+arr.forEach(console.log);
+//依次打印 "Apple","pear", "orange"
+
 
 
