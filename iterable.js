@@ -38,7 +38,7 @@ for (var i of s)
 //遍历数组
 var arr = ['a','b','c','d'];
 
-//这里在语句内定义函数function
+//这里在语句内用function定义一个匿名函数
 //forEach将当前的元素值，索引，数组传递给function
 //element当前元素值，index当前元素索引，array当前数组
 arr.forEach(function(element, index, array)
