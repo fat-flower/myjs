@@ -27,56 +27,84 @@ if (!filename || !(filename.endsWith('.jpg') || filename.endsWith('.png') || fil
 
 //HTML5的File API提供了File和FileReader两个主要对象，可以获得文件信息并读取文件
 
-//选择本地文件上传的框
+//选择本地文件上传预览
 /*
-<form method="post" action="http://localhost/test" enctype="multipart/form-data">
-    <p>图片预览：</p>
-    <p></p><div id="test-image-preview" style="border: 1px solid #ccc; width: 100%; height: 200px; background-size: contain; background-repeat: no-repeat; background-position: center center;"></div><p></p>
-    <p>
-    	<input type="file" id="test-image-file" name="test">
-    </p>
-    <p id="test-file-info"></p>
-</form>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>图片预览</title>
+		<!--设置test-image-preview块的样式-->
+        <style>
+		#test-image-preview {
+			width:900px;
+			height:600px;
+			border:2px solid #ff0000;
+			background-size:contain;
+			background-repeat:no-repeat;
+			background-position:center;
+		}
+        </style>       
+    </head>
+	<body>
+    	<script>
 */
-//上传文件的节点
-var fileInput = document.getElementById("test-image-file");
-//用来展示上传文件信息的节点(初始内容是空的，当上传文件后，往该节点添加文件信息)
-var info = document.getElementById('test-file-info');
-//用来显示上传图片内容的块节点
-var preview = document.getElementById('test-image-preview');
+		//window.onload() 方法用于在网页加载完毕后立刻执行的操作，即当 HTML 文档加载完毕后，立刻执行某个方法。
+		//window.onload() 通常用于 <body> 元素，在页面完全载入后(包括图片、css文件等等)执行脚本代码
+		window.onload = function (){
+			//上传文件的节点
+			var fileInput = document.getElementById("test-image-file");
+			//用来展示上传文件信息的节点(初始内容是空的，当上传文件后，往该节点添加文件信息)
+			var info = document.getElementById('test-file-info');
+			//用来显示上传图片内容的块节点
+			var preview = document.getElementById('test-image-preview');
 
-// 监听change事件:
-fileInput.addEventListener('change', function () {
-    //清除先前的背景图片
-    preview.style.backgroundImage = '';
-    //检查文件是否选择:
-    if (!fileInput.value) {
-        info.innerHTML = '没有选择文件';
-        return;
-    }
-	//fileInput.files表示上传的所有文件
-    //获取File引用(即上传的第一个文件):
-    var file = fileInput.files[0];
-    //获取上传的文件的信息，将信息添加到test-file-info节点
-    info.innerHTML = '文件: ' + file.name + '<br>' +
-                     '大小: ' + file.size + '<br>' +
-                     '修改: ' + file.lastModifiedDate;
-	//判断上传图片的类型是否是图片
-    if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/gif') {
-        alert('不是有效的图片文件!');
-        return;
-    }
-    //创建FfileReader对象
-    var reader = new FileReader();
-	
-	//设置回调函数，当文件读取完成后会调用此函数
-    reader.onload = function(e) {
-        var data = e.target.result; // 'data:image/jpeg;base64,/9j/4AAQSk...(base64编码)...' 
-		//将读取的文件内容(base64编码)设置为test-image-preview节点的背景
-        preview.style.backgroundImage = 'url(' + data + ')';
-    };
-    //以DataURL的形式读取文件
-    reader.readAsDataURL(file);
-});
+			//添加上传文件的监听change事件:
+			fileInput.addEventListener('change', function () {
+				//清除先前的背景图片
+				preview.style.backgroundImage = '';
+				//检查文件是否选择:
+				if (!fileInput.value) {
+					info.innerHTML = '没有选择文件';
+					return;
+				}
+				//fileInput.files表示上传的所有文件
+				//获取File引用(即上传的第一个文件):
+				var file = fileInput.files[0];
+				//获取上传的文件的信息，将信息添加到test-file-info节点
+				info.innerHTML = '文件: ' + file.name + '<br>' +
+								 '大小: ' + file.size + '<br>' +
+								 '修改: ' + file.lastModifiedDate;
+				//判断上传图片的类型是否是图片
+				if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/gif') {
+					alert('不是有效的图片文件!');
+					return;
+				}
+				//创建FfileReader对象
+				var reader = new FileReader();
+				
+				//设置回调函数，当文件读取完成后会调用此函数
+				//参数e为监听的时间对象实例，当上传文件产生读取完成的事件时，该事件被传入到回调函数
+				reader.onload = function(e) {
+					var data = e.target.result; // 'data:image/jpeg;base64,/9j/4AAQSk...(base64编码)...' 
+					//将读取的文件内容(base64编码)设置为test-image-preview节点的背景
+					//'url(' + data + ')'图像文件的位置
+					preview.style.backgroundImage = 'url(' + data + ')';
+				};
+				//以DataURL的形式读取文件（异步调用）
+				//当文件读取完成后，JavaScript引擎将自动调用设置的回调函数
+				reader.readAsDataURL(file);
+			});
+		};
+/*
+		</script>
+        <div id="test-file-info"></div>
+        <div id="test-image-preview"></div>
+        <form action=""><input id="test-image-file" type="file"></form>
+    </body>
+</html>
+*/
+
 
 
