@@ -88,6 +88,9 @@ if (!filename || !(filename.endsWith('.jpg') || filename.endsWith('.png') || fil
 				//参数e为监听的时间对象实例，当上传文件产生读取完成的事件时，该事件被传入到回调函数
 				reader.onload = function(e) {
 					var data = e.target.result; // 'data:image/jpeg;base64,/9j/4AAQSk...(base64编码)...' 
+					
+					//如果需要服务器端处理，把字符串base64,后面的字符发送给服务器并用Base64解码就可以得到原始文件的二进制内容
+					
 					//将读取的文件内容(base64编码)设置为test-image-preview节点的背景
 					//'url(' + data + ')'图像文件的位置
 					preview.style.backgroundImage = 'url(' + data + ')';
