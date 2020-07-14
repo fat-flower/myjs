@@ -114,6 +114,14 @@ for(var i=0; i<drinks.length; i++)
 	//dt标签对应的内容
 	console.log(drinks[i].innerHTML);//摩卡 酸奶 果汁
 }
+//menu.children表示获取节点drink-menu下的所有直属子节点
+var ret = menu.children;
+for(i=0;i<ret.length;i++)
+{
+    console.log(ret[i].innerHTML);
+}
+//依次打印摩卡，热摩卡咖啡，酸奶，北京老酸奶，果汁，鲜榨苹果汁
+
 
 //document对象还有一个cookie属性，可以获取当前页面的Cookie
 document.cookie;
