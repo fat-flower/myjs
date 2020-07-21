@@ -51,3 +51,21 @@ arr.forEach(function(element, index, array)
 //2,c 
 //3,d
 
+//遍历set
+//Set没有索引，因此回调函数的前两个参数都是元素本身
+var s = new Set(['a','b','c']);
+s.forEach(function (value, sameValue, set){
+	console.log(value);
+});
+//a b c
+
+//遍历map
+//Map的回调函数参数依次为value、key和map本身
+var m = new Map([[1,'x'],[2,'y'],[3,'z']]);
+m.forEach(function (value, key, map){
+	console.log(key+':'+value);
+});
+//1:x
+//2:y
+//3:z
+

@@ -89,9 +89,11 @@ function checkForm() {
 </form>
 
 <script>
-var re_name = /^[0-9a-zA-Z]{3,8}$/;
-var re_pwd = /^.{6,20}$/;
+
 function checkRegisterForm(){
+	var re_name = /^[0-9a-zA-Z]{3,8}$/;
+	var re_pwd = /^.{6,20}$/;
+	
 	var user_input = document.getElementById('username');
 	var pwd_input = document.getElementById('password');
 	var pwd_input_2 = document.getElementById('password-2');
